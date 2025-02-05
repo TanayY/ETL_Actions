@@ -24,8 +24,8 @@ jobs:
         run: python data_pipeline.py
       - name: Check for changes
         id: git-check
-        run: git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
+        run: git config --local user.name 'github-actions'
+          git config --local user.email 'github-actions@github.com'
           git add .
           git diff --staged --quiet || echo "changes=true" >> $GITHUB_ENV
       - name: Commit and push if changes
