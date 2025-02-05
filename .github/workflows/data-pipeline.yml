@@ -1,6 +1,7 @@
 name: data-pipeline-workflow
 
 on:
+  push:
   schedule:
     - cron: "*/15 * * * *"
 
