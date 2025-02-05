@@ -1,7 +1,7 @@
 from functions import *
 import time
 import datetime
-
+import random
 import pandas as pd
 
 
@@ -11,12 +11,16 @@ print(
 print("----------------------------------------------------------")
 
 # Step 1: Load data
-file_url = "https://docs.google.com/spreadsheets/d/1yPQp3upG49oxvHbsKfc7cTwlAKkkUyxK4YK2yjhTyFs/export?format=csv"
-df = download_excel_from_google_drive(file_url)
+file_url = "modified_etl.xlsx"
+df = pd.read_excel(file_url)
+df = df.loc[:, ~df.columns.str.startswith("Unnamed")]
+print(df)
 
 # Step 2 : Transform data
-df["C1"] += 1
-
+# Get current timestamp
+new_row = {"C1": [random.randint(1, 100)]}
+df = pd.concat([df, pd.DataFrame(new_row)], ignore_index=True)
+print(df)
 
 # Step 3: Export results
 
